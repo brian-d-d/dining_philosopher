@@ -38,40 +38,30 @@ class waiter {
         void lock_fork(int id) {
             switch(id) {
                 case 1:
-                    fork1_.get_mutex().lock();
-                    break;
+                    fork1_.get_mutex().lock(); break;
                 case 2:
-                    fork2_.get_mutex().lock();
-                    break;
+                    fork2_.get_mutex().lock(); break;
                 case 3:
-                    fork3_.get_mutex().lock();
-                    break;
+                    fork3_.get_mutex().lock(); break;
                 case 4:
-                    fork4_.get_mutex().lock();
-                    break;
+                    fork4_.get_mutex().lock(); break;
                 case 5:
-                    fork5_.get_mutex().lock();
-                    break;
+                    fork5_.get_mutex().lock(); break;
             }
         }
 
         void unlock_fork(int id) {
             switch(id) {
                 case 1:
-                    fork1_.get_mutex().unlock();
-                    break;
+                    fork1_.get_mutex().unlock(); break;
                 case 2:
-                    fork2_.get_mutex().unlock();
-                    break;
+                    fork2_.get_mutex().unlock(); break;
                 case 3:
-                    fork3_.get_mutex().unlock();
-                    break;
+                    fork3_.get_mutex().unlock(); break;
                 case 4:
-                    fork4_.get_mutex().unlock();
-                    break;
+                    fork4_.get_mutex().unlock(); break;
                 case 5:
-                    fork5_.get_mutex().unlock();
-                    break;
+                    fork5_.get_mutex().unlock(); break;
             }
         }
 

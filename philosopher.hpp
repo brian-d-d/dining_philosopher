@@ -2,6 +2,7 @@
 #define PHILOSOPHER_HPP_
 
 #include <iostream>
+#include <chrono>
 #include "waiter.hpp"
 #include "fork.hpp"
 
@@ -24,23 +25,21 @@ class philosopher {
         //Can only ask waiter if no other threads are asking it
         //Locks the waiter and then unlocks the waiter if the waiter is free in the first place
         void ask_waiter() {
-            if (waiter_.get_mutex().try_lock()) {
-                if (waiter_.check_philosphers_forks(id_)) {
-                    std::cout << "Forks free!" << std::endl;
-                    eat();
+            for (;;) {
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+                if (waiter_.get_mutex().try_lock()) {
+                    if (waiter_.check_philosphers_forks(id_)) {
+                        eat();
+                    }
+                    waiter_.get_mutex().unlock();
                 }
                 else {
-                    std::cout << "Forks taken" << std::endl;
+                    std::cout << "Waiter busy" << std::endl;
                 }
-                waiter_.get_mutex().unlock();
-            }
-            else {
-                std::cout << "Waiter busy" << std::endl;
             }
         }
 
         void eat() {
-            std::cout << id_ << ": Eating" << std::endl;
             switch(id_) {
                 case 1:
                     waiter_.lock_fork(1);
@@ -50,9 +49,9 @@ class philosopher {
                     break;
                 case 2:
                     waiter_.lock_fork(2);
-                    // waiter_.lock_fork(3);
+                    waiter_.lock_fork(3);
                     waiter_.unlock_fork(2);
-                    // waiter_.unlock_fork(3);
+                    waiter_.unlock_fork(3);
                     break;
                 case 3:
                     waiter_.lock_fork(3);
@@ -73,7 +72,7 @@ class philosopher {
                     waiter_.unlock_fork(5);
                     break;
             }
-            std::cout << "eaten" << std::endl;
+            std::cout << id_ << ": eaten" << std::endl;
         }
 
     private:
