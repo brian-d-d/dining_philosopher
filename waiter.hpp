@@ -39,14 +39,19 @@ class waiter {
             switch(id) {
                 case 1:
                     fork1_.get_mutex().lock();
+                    break;
                 case 2:
                     fork2_.get_mutex().lock();
+                    break;
                 case 3:
                     fork3_.get_mutex().lock();
+                    break;
                 case 4:
                     fork4_.get_mutex().lock();
+                    break;
                 case 5:
                     fork5_.get_mutex().lock();
+                    break;
             }
         }
 
@@ -54,14 +59,19 @@ class waiter {
             switch(id) {
                 case 1:
                     fork1_.get_mutex().unlock();
+                    break;
                 case 2:
                     fork2_.get_mutex().unlock();
+                    break;
                 case 3:
                     fork3_.get_mutex().unlock();
+                    break;
                 case 4:
                     fork4_.get_mutex().unlock();
+                    break;
                 case 5:
                     fork5_.get_mutex().unlock();
+                    break;
             }
         }
 

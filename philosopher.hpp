@@ -15,12 +15,10 @@ class philosopher {
         philosopher(waiter& waiter_p, int id_p) : 
             waiter_(waiter_p),
             id_(id_p) {
-                ask_waiter();
         }
         
         philosopher(waiter& waiter_p) : 
             waiter_(waiter_p) {
-                ask_waiter();
         }
 
         //Can only ask waiter if no other threads are asking it
@@ -42,34 +40,40 @@ class philosopher {
         }
 
         void eat() {
+            std::cout << id_ << ": Eating" << std::endl;
             switch(id_) {
-                std::cout << id_ << ": Eating" << std::endl;
                 case 1:
                     waiter_.lock_fork(1);
                     waiter_.lock_fork(2);
                     waiter_.unlock_fork(1);
                     waiter_.unlock_fork(2);
+                    break;
                 case 2:
                     waiter_.lock_fork(2);
-                    waiter_.lock_fork(3);
+                    // waiter_.lock_fork(3);
                     waiter_.unlock_fork(2);
-                    waiter_.unlock_fork(3);
+                    // waiter_.unlock_fork(3);
+                    break;
                 case 3:
                     waiter_.lock_fork(3);
                     waiter_.lock_fork(4);
                     waiter_.unlock_fork(3);
                     waiter_.unlock_fork(4);
+                    break;
                 case 4:
                     waiter_.lock_fork(4);
                     waiter_.lock_fork(5);
                     waiter_.unlock_fork(4);
                     waiter_.unlock_fork(5);
+                    break;
                 case 5:
                     waiter_.lock_fork(1);
                     waiter_.lock_fork(5);
                     waiter_.unlock_fork(1);
                     waiter_.unlock_fork(5);
+                    break;
             }
+            std::cout << "eaten" << std::endl;
         }
 
     private:
