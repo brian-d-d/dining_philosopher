@@ -50,7 +50,7 @@ class waiter {
 
         void unlock_fork(int id) {
             vec_[id - 1].get()->get_mutex().unlock();
-            eating_id_ = 9999;
+            eating_id_ = NO_ONE_EATING;
         }
 
         std::mutex& get_mutex() {
