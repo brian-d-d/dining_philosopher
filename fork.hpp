@@ -21,11 +21,7 @@ class fork {
         std::mutex& get_mutex() {
             return fork_;
         }
-
-        void test() {
-            std::cout << "hello" << std::endl;
-        }
-
+        
     private:
         std::mutex fork_;
 };
