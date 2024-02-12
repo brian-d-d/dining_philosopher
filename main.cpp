@@ -26,7 +26,7 @@ int main() {
         std::thread t3( [&philosopher3]() {philosopher3.ask_waiter();});
         std::thread t4( [&philosopher4]() {philosopher4.ask_waiter();});
         std::thread t5( [&philosopher5]() {philosopher5.ask_waiter();});
-        std::thread t6( [&monitor_f]() {monitor_f.print_fork_status();});
+        std::thread t6( [&monitor_f]() {monitor_f.print_status();});
 
         t1.join();
         t2.join();
@@ -36,7 +36,7 @@ int main() {
         t6.join();
 
     }
-    catch (std::system_error& ec) {
-        std::cout << ec.what() << std::endl;
+    catch (std::system_error& se) {
+        std::cout << se.what() << std::endl;
     }
 }

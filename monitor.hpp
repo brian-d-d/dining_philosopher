@@ -13,12 +13,14 @@ class monitor {
             waiter_(waiter_p),
             philosopher_eat_count_(std::vector(5, 0)) {}
         
-        void print_fork_status() {
+        void print_status() {
             for (;;) {
                 std::this_thread::sleep_for(std::chrono::seconds(2));
-                if (waiter_.get_eating_id() != NO_ONE_EATING) {
+                int philosopher_id = waiter_.get_eating_id();
+
+                if (philosopher_id != NO_ONE_EATING) {
                     std::cout << "1 2 3 4 5 ";
-                    print_philosopher_status();
+                    print_philosopher_status(philosopher_id);
                     std::cout << std::endl;
 
                     for (std::shared_ptr<fork> fork_p : waiter_.get_vec()) {
@@ -37,9 +39,9 @@ class monitor {
             }
         }
 
-        void print_philosopher_status() {
-            std::cout << "Philosopher " << waiter_.get_eating_id() << " is eating";
-            philosopher_eat_count_[waiter_.get_eating_id() - 1]++;
+        void print_philosopher_status(int id) {
+            std::cout << "Philosopher " << id << " is eating";
+            philosopher_eat_count_[id - 1]++;
         }
 
         void print_total_count() {
