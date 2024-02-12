@@ -29,7 +29,6 @@ class philosopher {
                     waiter_.get_mutex().unlock();
                 }
                 else {
-                    std::cout << "Waiter busy" << std::endl;
                 }
             }
         }

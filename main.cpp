@@ -12,9 +12,8 @@
 
 int main() {
     try {
-        fork fork1, fork2, fork3, fork4, fork5;
-        waiter waiter_f(fork1, fork2, fork3, fork4, fork5);
-        monitor monitor_f(fork1, fork2, fork3, fork4, fork5);
+        waiter waiter_f;
+        monitor monitor_f(waiter_f);
 
         philosopher philosopher1(waiter_f, 1), 
                     philosopher2(waiter_f, 2), 
