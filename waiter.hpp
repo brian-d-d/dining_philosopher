@@ -2,6 +2,7 @@
 #define WAITER_HPP_
 
 #include <mutex>
+#include <memory>
 #include "fork.hpp"
 
 class waiter {
@@ -69,7 +70,7 @@ class waiter {
             return waiter_;
         }
 
-    private:
+    protected:
         //So only one philospher can talk to this waiter at a time
         std::mutex waiter_;
         //So the waiter is able to check if each fork is in use
@@ -78,6 +79,8 @@ class waiter {
         fork& fork3_;
         fork& fork4_;
         fork& fork5_;
+
+        // std::vector<fork> vec;
 };
 
 #endif

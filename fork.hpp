@@ -2,6 +2,7 @@
 #define FORK_HPP_
 
 #include <mutex>
+#include <iostream>
 
 class fork {
     public:
@@ -19,6 +20,10 @@ class fork {
 
         std::mutex& get_mutex() {
             return fork_;
+        }
+
+        void test() {
+            std::cout << "hello" << std::endl;
         }
 
     private:

@@ -6,11 +6,6 @@
 #include "waiter.hpp"
 #include "fork.hpp"
 
-//1. Philosopher asks waiter if its required forks are free.
-//2. Waiter checks these 2 forks
-//3. If the 2 forks are free, the philosopher locks them
-//4. After the philosopher finishes eating they unlock the forks
-
 class philosopher {
     public:
         philosopher(waiter& waiter_p, int id_p) : 
@@ -44,30 +39,35 @@ class philosopher {
                 case 1:
                     waiter_.lock_fork(1);
                     waiter_.lock_fork(2);
+                    std::this_thread::sleep_for(std::chrono::seconds(2));
                     waiter_.unlock_fork(1);
                     waiter_.unlock_fork(2);
                     break;
                 case 2:
                     waiter_.lock_fork(2);
                     waiter_.lock_fork(3);
+                    std::this_thread::sleep_for(std::chrono::seconds(2));
                     waiter_.unlock_fork(2);
                     waiter_.unlock_fork(3);
                     break;
                 case 3:
                     waiter_.lock_fork(3);
                     waiter_.lock_fork(4);
+                    std::this_thread::sleep_for(std::chrono::seconds(2));
                     waiter_.unlock_fork(3);
                     waiter_.unlock_fork(4);
                     break;
                 case 4:
                     waiter_.lock_fork(4);
                     waiter_.lock_fork(5);
+                    std::this_thread::sleep_for(std::chrono::seconds(2));
                     waiter_.unlock_fork(4);
                     waiter_.unlock_fork(5);
                     break;
                 case 5:
                     waiter_.lock_fork(1);
                     waiter_.lock_fork(5);
+                    std::this_thread::sleep_for(std::chrono::seconds(2));
                     waiter_.unlock_fork(1);
                     waiter_.unlock_fork(5);
                     break;
