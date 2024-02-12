@@ -3,6 +3,7 @@
 
 #include <mutex>
 #include <memory>
+#include <vector>
 #include "fork.hpp"
 
 #define NO_ONE_EATING 9999
