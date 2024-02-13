@@ -2,6 +2,7 @@
 #define DINING_GTEST_HPP_
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -20,9 +21,30 @@ class waiterTest : public testing::Test {
         std::vector<std::shared_ptr<dining::fork>> fork_vec_;
 };
 
-class paramwaiterTest : public waiterTest, public testing::WithParamInterface<int> {
-
+class waiterMock : public dining::waiter {
+    public:
+        MOCK_METHOD(int, check_philosophers_forks, (int philosopher_id), (override));
+        MOCK_METHOD(void, lock_fork, (int id), (override));
+        MOCK_METHOD(void, unlock_fork, (int id), (override));
+        MOCK_METHOD(std::mutex&, get_mutex, (), (override));
+        MOCK_METHOD(std::vector<std::shared_ptr<dining::fork>>&, get_vec, (), (override));
+        MOCK_METHOD(int, get_eating_id, (), (override));
 };
+
+class forkMock : public dining::fork {
+    public:
+        MOCK_METHOD(int, check_fork, (), (override));
+        MOCK_METHOD(std::mutex&, get_mutex, (), (override));
+};
+
+class philosopherMock : public dining::philosopher {
+    public:
+        MOCK_METHOD(void, ask_waiter, (), (override));
+        MOCK_METHOD(void, eat, (), (override));
+        MOCK_METHOD(int, get_id, (), (override));
+};
+
+class paramwaiterTest : public waiterTest, public testing::WithParamInterface<int> {};
 
 class diningTest : public testing::Test {
     protected:
@@ -42,11 +64,11 @@ class diningTest : public testing::Test {
 
         dining::waiter waiter_;
         std::vector<std::shared_ptr<dining::philosopher>> philosopher_vec_;
-        std::thread philosopher1;
-        std::thread philosopher2;
-        std::thread philosopher3;
-        std::thread philosopher4;
-        std::thread philosopher5;
+        // std::thread philosopher1;
+        // std::thread philosopher2;
+        // std::thread philosopher3;
+        // std::thread philosopher4;
+        // std::thread philosopher5;
 };
 
 #endif

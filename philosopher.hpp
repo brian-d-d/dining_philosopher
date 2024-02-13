@@ -21,13 +21,13 @@ class philosopher {
 
         //Can only ask waiter if no other threads are asking it
         //Locks the waiter and then unlocks the waiter if the waiter is free
-        void ask_waiter() {
+        virtual void ask_waiter() {
             for (;;) {
                 // std::cout << "hello";
                 std::this_thread::get_id();
                 std::this_thread::sleep_for(std::chrono::seconds(2));
                 if (waiter_.get_mutex().try_lock()) {
-                    if (waiter_.check_philosphers_forks(id_)) {
+                    if (waiter_.check_philosophers_forks(id_)) {
                         eat();
                     }
                     waiter_.get_mutex().unlock();
@@ -35,7 +35,7 @@ class philosopher {
             }
         }
 
-        void eat() {
+        virtual void eat() {
             switch(id_) {
                 case 1:
                     waiter_.lock_fork(1);
@@ -75,7 +75,7 @@ class philosopher {
             }
         }
 
-        int get_id() {
+        virtual int get_id() {
             return id_;
         }
 

@@ -10,7 +10,7 @@ class fork {
     public:
         fork() {}
         //Return true if the fork is unlocked, returns false it is locked
-        int check_fork() {
+        virtual int check_fork() {
             if (fork_.try_lock()) {
                 fork_.unlock();
                 return true;
@@ -20,7 +20,7 @@ class fork {
             }
         }
 
-        std::mutex& get_mutex() {
+        virtual std::mutex& get_mutex() {
             return fork_;
         }
         
