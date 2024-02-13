@@ -9,25 +9,30 @@ TEST_F(waiterTest, forksunlocked) {
     }
 }
 
-TEST_F(waiterTest, fork1locked) {
-    waiter_.lock_fork(1);
-    EXPECT_EQ(fork_vec_[0].get()->check_fork(), false);
-    EXPECT_EQ(fork_vec_[1].get()->check_fork(), true);
-    EXPECT_EQ(fork_vec_[2].get()->check_fork(), true);
-    EXPECT_EQ(fork_vec_[3].get()->check_fork(), true);
-    EXPECT_EQ(fork_vec_[4].get()->check_fork(), true);
+//Checks that each fork can be locked properly
+TEST_P(paramwaiterTest, eachforklock) {
+    waiter_.lock_fork(GetParam());
+    for (int i = 0; i < 5; i++) {
+        if (i + 1 != GetParam()) {
+            EXPECT_EQ(fork_vec_[i].get()->check_fork(), true);
+        }
+        else {  
+            EXPECT_EQ(fork_vec_[i].get()->check_fork(), false);
+        }
+    }
 }
 
-TEST_F(waiterTest, lockunlockfork) {
-    waiter_.lock_fork(1);
-    EXPECT_EQ(fork_vec_[0].get()->check_fork(), false);
-    waiter_.unlock_fork(1);
-    EXPECT_EQ(fork_vec_[0].get()->check_fork(), true);
+//Tests that each for is locked and unlocked properly
+TEST_P(paramwaiterTest, lockunlockeachfork) {
+    waiter_.lock_fork(GetParam());
+    EXPECT_EQ(fork_vec_[GetParam() - 1].get()->check_fork(), false);
+    waiter_.unlock_fork(GetParam());
+    EXPECT_EQ(fork_vec_[GetParam() - 1].get()->check_fork(), true);
 }
 
-TEST_F(waiterTest, checkeatingid) {
-    waiter_.check_philosphers_forks(3);
-    EXPECT_EQ(waiter_.get_eating_id(), 3);
+TEST_P(paramwaiterTest, checkeatingids) {
+    waiter_.check_philosphers_forks(GetParam());
+    EXPECT_EQ(waiter_.get_eating_id(), GetParam());
 }
 
 TEST_F(diningTest, checkids) {
@@ -35,6 +40,8 @@ TEST_F(diningTest, checkids) {
         EXPECT_EQ(philosopher_vec_[id - 1].get()->get_id(), id);
     }
 }
+
+INSTANTIATE_TEST_SUITE_P(paramtesting, paramwaiterTest, testing::Values(1, 2, 3, 4, 5));
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

@@ -23,6 +23,7 @@ class philosopher {
         //Locks the waiter and then unlocks the waiter if the waiter is free
         void ask_waiter() {
             for (;;) {
+                // std::cout << "hello";
                 std::this_thread::get_id();
                 std::this_thread::sleep_for(std::chrono::seconds(2));
                 if (waiter_.get_mutex().try_lock()) {
