@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <chrono>
+#include <thread>
 #include "waiter.hpp"
-#include "fork.hpp"
 
 namespace dining {
 
@@ -23,6 +23,7 @@ class philosopher {
         //Locks the waiter and then unlocks the waiter if the waiter is free
         void ask_waiter() {
             for (;;) {
+                std::this_thread::get_id();
                 std::this_thread::sleep_for(std::chrono::seconds(2));
                 if (waiter_.get_mutex().try_lock()) {
                     if (waiter_.check_philosphers_forks(id_)) {
@@ -71,6 +72,10 @@ class philosopher {
                     waiter_.unlock_fork(5);
                     break;
             }
+        }
+
+        int get_id() {
+            return id_;
         }
 
     private:
