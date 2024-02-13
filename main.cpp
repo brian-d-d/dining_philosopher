@@ -11,6 +11,8 @@
 //3. If the 2 forks are free, the waiter locks them
 //4. After the philosopher finishes eating the waiter unlocks the forks
 
+using namespace dining;
+
 int main() {
     try {
         waiter waiter_f;

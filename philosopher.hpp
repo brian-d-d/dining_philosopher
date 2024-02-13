@@ -6,6 +6,8 @@
 #include "waiter.hpp"
 #include "fork.hpp"
 
+namespace dining {
+
 class philosopher {
     public:
         philosopher(waiter& waiter_p, int id_p) : 
@@ -75,5 +77,7 @@ class philosopher {
         waiter& waiter_;
         int id_;
 };
+
+}
 
 #endif

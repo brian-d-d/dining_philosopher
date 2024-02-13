@@ -4,6 +4,8 @@
 #include <mutex>
 #include <iostream>
 
+namespace dining {
+    
 class fork {
     public:
         fork() {}
@@ -25,5 +27,7 @@ class fork {
     private:
         std::mutex fork_;
 };
+
+}
 
 #endif

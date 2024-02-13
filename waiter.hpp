@@ -8,6 +8,8 @@
 
 #define NO_ONE_EATING 9999
 
+namespace dining {
+
 class waiter {
     public:
         waiter() {
@@ -74,5 +76,7 @@ class waiter {
         //ID of the philosopher who is currently eating
         int eating_id_;
 };
+
+}
 
 #endif

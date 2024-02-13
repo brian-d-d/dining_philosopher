@@ -7,6 +7,8 @@
 #include <vector>
 #include "waiter.hpp"
 
+namespace dining {
+
 class monitor {
     public:
         monitor(waiter& waiter_p) : 
@@ -59,5 +61,7 @@ class monitor {
         
 
 };
+
+}
 
 #endif
