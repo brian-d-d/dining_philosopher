@@ -5,10 +5,11 @@
 #include "fork.hpp"
 #include "monitor.hpp"
 
-//1. Philosopher asks waiter if its required forks are free.
+//1. Philosopher checks to see if waiter is free
+//2. If the waiter is free it asks if its 2 forks are free
 //2. Waiter checks these 2 forks
-//3. If the 2 forks are free, the philosopher locks them
-//4. After the philosopher finishes eating they unlock the forks
+//3. If the 2 forks are free, the waiter locks them
+//4. After the philosopher finishes eating the waiter unlocks the forks
 
 int main() {
     try {
