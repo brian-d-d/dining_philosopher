@@ -9,9 +9,9 @@
 
 namespace dining {
 
-class monitor {
+class Monitor {
     public:
-        monitor(waiter& waiter_p) : 
+        Monitor(Waiter& waiter_p) : 
             waiter_(waiter_p),
             philosopher_eat_count_(std::vector(5, 0)) {}
         
@@ -25,7 +25,7 @@ class monitor {
                     print_philosopher_status(philosopher_id);
                     std::cout << std::endl;
 
-                    for (std::shared_ptr<fork> fork_p : waiter_.get_vec()) {
+                    for (std::shared_ptr<Fork> fork_p : waiter_.get_vec()) {
                         if (fork_p.get()->get_mutex().try_lock()) {
                             std::cout << "y ";
                             fork_p.get()->get_mutex().unlock();
@@ -56,7 +56,7 @@ class monitor {
         }
     
     private:
-        waiter& waiter_;
+        Waiter& waiter_;
         std::vector<int> philosopher_eat_count_;
         
 

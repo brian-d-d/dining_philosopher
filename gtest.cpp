@@ -8,7 +8,7 @@ using ::testing::AtLeast;
 
 //Checks that all forks are unlocked on construction of waiter class
 TEST_F(waiterTest, forksunlocked) {
-    for (std::shared_ptr<dining::fork> fork : fork_vec_) {
+    for (std::shared_ptr<dining::Fork> fork : fork_vec_) {
         EXPECT_EQ(fork.get()->check_fork(), true);
     }
 }
@@ -61,7 +61,6 @@ TEST(gmockforkTest, test) {
 
 TEST(gmockdiningTest, test) {
     waiterMock waiterMock_v;
-    
 }
 
 INSTANTIATE_TEST_SUITE_P(paramtesting, paramwaiterTest, testing::Values(1, 2, 3, 4, 5));
@@ -70,7 +69,4 @@ int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     testing::InitGoogleMock(&argc, argv);
     return RUN_ALL_TESTS();
-
-    
-    
 }

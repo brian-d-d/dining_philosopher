@@ -6,9 +6,9 @@
 
 namespace dining {
     
-class fork {
+class Fork {
     public:
-        fork() {}
+        Fork() {}
         //Return true if the fork is unlocked, returns false it is locked
         virtual int check_fork() {
             if (fork_.try_lock()) {

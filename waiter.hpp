@@ -10,14 +10,14 @@
 
 namespace dining {
 
-class waiter {
+class Waiter {
     public:
-        waiter() {
-                vec_.push_back(std::make_shared<fork>());
-                vec_.push_back(std::make_shared<fork>());
-                vec_.push_back(std::make_shared<fork>());
-                vec_.push_back(std::make_shared<fork>());
-                vec_.push_back(std::make_shared<fork>());
+        Waiter() {
+                vec_.push_back(std::make_shared<Fork>());
+                vec_.push_back(std::make_shared<Fork>());
+                vec_.push_back(std::make_shared<Fork>());
+                vec_.push_back(std::make_shared<Fork>());
+                vec_.push_back(std::make_shared<Fork>());
             }
 
         //Checks if the forks for the specific philosopher are free
@@ -60,7 +60,7 @@ class waiter {
             return waiter_;
         }
 
-        virtual std::vector<std::shared_ptr<fork>>& get_vec() {
+        virtual std::vector<std::shared_ptr<Fork>>& get_vec() {
             return vec_;
         }
 
@@ -72,7 +72,7 @@ class waiter {
         //So only one philosopher can talk to this waiter at a time
         std::mutex waiter_;
         //So the waiter is able to check if each fork is in use
-        std::vector<std::shared_ptr<fork>> vec_;
+        std::vector<std::shared_ptr<Fork>> vec_;
         //ID of the philosopher who is currently eating
         int eating_id_;
 };

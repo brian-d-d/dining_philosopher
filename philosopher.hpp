@@ -8,14 +8,14 @@
 
 namespace dining {
 
-class philosopher {
+class Philosopher {
     public:
-        philosopher(waiter& waiter_p, int id_p) : 
+        Philosopher(Waiter& waiter_p, int id_p) : 
             waiter_(waiter_p),
             id_(id_p) {
         }
         
-        philosopher(waiter& waiter_p) : 
+        Philosopher(Waiter& waiter_p) : 
             waiter_(waiter_p) {
         }
 
@@ -80,7 +80,7 @@ class philosopher {
         }
 
     private:
-        waiter& waiter_;
+        Waiter& waiter_;
         int id_;
 };
 

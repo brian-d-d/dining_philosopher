@@ -15,10 +15,10 @@ using namespace dining;
 
 int main() {
     try {
-        waiter waiter_f;
-        monitor monitor_f(waiter_f);
+        Waiter waiter_f;
+        Monitor monitor_f(waiter_f);
 
-        philosopher philosopher1(waiter_f, 1), 
+        Philosopher philosopher1(waiter_f, 1), 
                     philosopher2(waiter_f, 2), 
                     philosopher3(waiter_f, 3), 
                     philosopher4(waiter_f, 4), 
