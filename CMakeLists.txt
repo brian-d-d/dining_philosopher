@@ -3,12 +3,11 @@ project(dining_philosophers)
 set(CMAKE_CXX_STANDARD 23)
 
 include_directories(/usr/local/include/)
+include_directories(${PROJECT_SOURCE_DIR}/dining)
+include_directories(${PROJECT_SOURCE_DIR}/google_testing)
 
-add_library(Philosopher INTERFACE Philosopher.hpp)
-add_library(Waiter INTERFACE waiter.hpp)
-add_library(Fork INTERFACE fork.hpp)
-add_library(Monitor INTERFACE monitor.hpp)
-add_library(Dining_GTest INTERFACE dining_gtest.hpp)
+add_subdirectory(dining)
+add_subdirectory(google_testing)
 
 add_library(GTestMain SHARED IMPORTED)
 add_library(GTest SHARED IMPORTED)

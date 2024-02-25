@@ -1,0 +1,1 @@
+add_library(Dining_GTest INTERFACE dining_gtest.hpp)
